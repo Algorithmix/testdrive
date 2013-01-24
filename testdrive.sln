@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testdrive", "testdrive\testdrive.csproj", "{D1179F3D-B0F2-46C5-84B9-07C2034F43F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{CD421497-5377-45C5-A141-C4E4C657F014}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "UnitTest\tests.csproj", "{CD421497-5377-45C5-A141-C4E4C657F014}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D1179F3D-B0F2-46C5-84B9-07C2034F43F5} = {D1179F3D-B0F2-46C5-84B9-07C2034F43F5}
 	EndProjectSection
