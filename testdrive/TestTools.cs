@@ -50,7 +50,7 @@ namespace Algorithmix
             #endregion
 
             private static string TESTDRIVE_ROOT;
-
+            public static int MAX_DEPTH = 10;
             private readonly string _directory;
             private readonly Reason _reason;
 
@@ -131,6 +131,37 @@ namespace Algorithmix
                 foreach (Bitmap bitmap in bitmaps)
                 {
                     Save(bitmap, prefix);
+                }
+            }
+
+            public List<string> GetAllMatching(string prefix)
+            {
+                var files = new List<string>();
+                GetAllMatching(prefix, this._directory, files);
+                return files;
+            }
+
+            /// <summary>
+            /// Given a root directory, recursiveky search through subfolders searching for shred images
+            /// </summary>
+            /// <param name="targetDirectory"></param>
+            /// <param name="myIndexDictionary"></param>
+            /// <param name="textFilePath"></param>
+            private void GetAllMatching(string prefix, string directory, List<string> files, int depth = 0)
+            {
+                if (depth >= MAX_DEPTH)
+                {
+                    return;
+                }
+                // Process the list of files found in the directory.
+                Directory.EnumerateFiles(directory)
+                         .Where(filename => filename.StartsWith(Path.Combine(directory, prefix)))
+                         .ToList().ForEach(filename => files.Add(filename));
+
+                // Recurse into subdirectories of this directory. 
+                foreach (string subdirectory in Directory.GetDirectories(directory))
+                {
+                    GetAllMatching(prefix, subdirectory, files);
                 }
             }
         }
