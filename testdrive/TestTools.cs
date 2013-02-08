@@ -17,7 +17,6 @@ namespace Algorithmix
         public class TestDriveException : Exception
         {
             public TestDriveException()
-                : base()
             {
             }
 
@@ -101,7 +100,7 @@ namespace Algorithmix
             {
                 return
                     Directory.EnumerateFiles(_directory).Where(
-                        filename => filename.StartsWith(Path.Combine(this._directory, prefix)));
+                        filename => filename.StartsWith(Path.Combine(_directory, prefix)));
             }
 
             public int FileCount()
@@ -137,16 +136,16 @@ namespace Algorithmix
             public List<string> GetAllMatching(string prefix)
             {
                 var files = new List<string>();
-                GetAllMatching(prefix, this._directory, files);
+                GetAllMatching(prefix, _directory, files);
                 return files;
             }
 
             /// <summary>
-            /// Given a root directory, recursiveky search through subfolders searching for shred images
+            ///   Given a root directory, recursiveky search through subfolders searching for shred images
             /// </summary>
-            /// <param name="targetDirectory"></param>
-            /// <param name="myIndexDictionary"></param>
-            /// <param name="textFilePath"></param>
+            /// <param name="targetDirectory"> </param>
+            /// <param name="myIndexDictionary"> </param>
+            /// <param name="textFilePath"> </param>
             private void GetAllMatching(string prefix, string directory, List<string> files, int depth = 0)
             {
                 if (depth >= MAX_DEPTH)
@@ -155,8 +154,8 @@ namespace Algorithmix
                 }
                 // Process the list of files found in the directory.
                 Directory.EnumerateFiles(directory)
-                         .Where(filename => filename.StartsWith(Path.Combine(directory, prefix)))
-                         .ToList().ForEach(filename => files.Add(filename));
+                    .Where(filename => filename.StartsWith(Path.Combine(directory, prefix)))
+                    .ToList().ForEach(filename => files.Add(filename));
 
                 // Recurse into subdirectories of this directory. 
                 foreach (string subdirectory in Directory.GetDirectories(directory))
